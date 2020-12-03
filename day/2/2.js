@@ -37,18 +37,6 @@ function validatePasswords(input){
     return validCount;
 }
 
-function passwordToMap(password){
-    const map = {};
-    for (const letter of password){
-        if (map[letter] === undefined){
-            map[letter] = 1;
-        }else{
-            map[letter] += 1;
-        }
-    }
-    return map;
-}
-
 const formattedInput = formatInput(input.full);
 
 const result = validatePasswords(formattedInput);
