@@ -28,7 +28,7 @@ function validatePassports(passports){
         let isValid = true;
 
         requiredFields.forEach((field, j) => {;
-            if ( passport[field] === undefined || !isValidValue(field, passport[field])){ isValid = false; }
+            if (!isValidValue(field, passport[field])){ isValid = false; }
         })
 
         if (isValid) { ++validCount; }
@@ -39,11 +39,13 @@ function validatePassports(passports){
 
 function isValidValue(field, value){
 
+    if (value === undefined) { return false; }
+
     const validators = {
-        'byr': (v) => { return 1920 <= parseInt(v) && parseInt(v) <= 2002 },
-        'iyr': (v) => { return 2010 <= parseInt(v) && parseInt(v) <= 2020 },
-        'eyr': (v) => { return 2020 <= parseInt(v) && parseInt(v) <= 2030 },
-        'hgt': (v) => { return v.match(/^(1[5-8][0-9]|19[0-3])cm$/) != null || v.match(/^(59|6[0-9]|7[0-6])in$/) != null; },
+        'byr': (v) => { v = parseInt(v); return 1920 <= v && v <= 2002; },
+        'iyr': (v) => { v = parseInt(v); return 2010 <= v && v <= 2020; },
+        'eyr': (v) => { v = parseInt(v); return 2020 <= v && v <= 2030; },
+        'hgt': (v) => { return v.match(/^((1[5-8][0-9]|19[0-3])cm|(59|6[0-9]|7[0-6])in)$/) != null; },
         'hcl': (v) => { return v.match(/^#[0-9,a-f]{6}$/) != null; },
         'ecl': (v) => { return ['amb','blu','brn','gry','grn','hzl','oth'].indexOf(v) > -1; },
         'pid': (v) => { return v.match(/^[0-9]{9}$/) != null; }
