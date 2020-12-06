@@ -24,19 +24,6 @@ function sumUnanimousAnswers(input){
     return sum;
 }
 
-function deduplicateString(str){
-    let dd = '';
-    const sorted = str.split('').sort();
-
-    for (let i = 0; i < sorted.length; i++){
-        if (sorted[i] != sorted[i+1] || i === sorted.length - 1){
-            dd += sorted[i];
-        }
-    }
-
-    return dd;
-}
-
 const result = sumUnanimousAnswers(input.full);
 
 console.log(result);
