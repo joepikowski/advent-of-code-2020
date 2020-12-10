@@ -31,7 +31,7 @@ function testAddends(sum, a1, a2){
 function recursiveTestAddends(sum, a1, a2, digits){
     if (digits >= sum.toString().length && a1 + a2 === sum){ return true; } //We've checked the entire values and they sum properly
 
-    /* Example: 1001, 999, 2 - This offset makes sure our first recursive test is 100 + 99 + 2 */
+    /* Example: 1001, 979, 22 - This offset makes sure our first recursive test is  97 + 2 === 100 || 97 + 2 === 99 */
     const a1Offset = sum.toString().length - a1.toString().length;
     const a2Offset = sum.toString().length - a2.toString().length;
     const maxOffset = Math.max(a1Offset, a2Offset);
